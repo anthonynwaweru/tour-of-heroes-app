@@ -3,11 +3,12 @@ import { Hero } from '../hero';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HEROES } from '../mock-heroes';
+import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgFor, NgIf],
+  imports: [CommonModule, FormsModule, NgFor, NgIf, HeroDetailComponent],
   template: `
     <section>
       <h2>My Heroes</h2>
@@ -31,18 +32,7 @@ import { HEROES } from '../mock-heroes';
         <input id="name" [(ngModel)]="hero.name" placeholder="name" />
       </div>
     </section>
-    <div *ngIf="selectedHero">
-      <h2>{{ selectedHero.name | uppercase }} Details</h2>
-      <div>id: {{ selectedHero.id }}</div>
-      <div>
-        <label for="hero-name">Hero name: </label>
-        <input
-          id="hero-name"
-          [(ngModel)]="selectedHero.name"
-          placeholder="name"
-        />
-      </div>
-    </div>
+    <app-hero-detail [hero]="selectedHero"></app-hero-detail>
   `,
   styleUrl: './heroes.component.css',
 })
